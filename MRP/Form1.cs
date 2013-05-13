@@ -33,41 +33,78 @@ namespace MRP
             this.part_AssyTableAdapter.Fill(this.assyPartDS.Part_Assy);
             // TODO: данная строка кода позволяет загрузить данные в таблицу "dataSet.Assy". При необходимости она может быть перемещена или удалена.
             this.assyTableAdapter.Fill(this.dataSet.Assy);
-           
-           
-        
             
         }
 
        
 
-        private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        private void AssyPartView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             //MessageBox.Show(dataGridView1[0,0].Value.ToString());
             //MessageBox.Show(assyTableAdapter1.GetIDByName2(dataGridView1[0, e.RowIndex].Value.ToString()).ToString());
-            PartAssyUpdateDelegate UpdateFunc = null;
-            switch (e.ColumnIndex) 
+            if (AssyPartView[0, e.RowIndex].Value != null && AssyPartView[1, e.RowIndex].Value != null && AssyPartView[2, e.RowIndex].Value != null
+                && AssyPartView[0, e.RowIndex].Value.ToString().Length > 0 && AssyPartView[1, e.RowIndex].Value.ToString().Length > 0 && AssyPartView[2, e.RowIndex].Value.ToString().Length > 0)
             {
-                case 0:
-                    UpdateFunc = new PartAssyUpdateDelegate(part_AssyTableAdapter.UpdateAssy);
-                    break;
-                case 1:
-                    UpdateFunc = new PartAssyUpdateDelegate(part_AssyTableAdapter.UpdatePart);
-                    break;
-                case 2:
-                    UpdateFunc = new PartAssyUpdateDelegate(part_AssyTableAdapter.UpdateQty);
-                    break;
-                default:
-                    Debug.WriteLine("Part Assy table column index out of range");
-                    break;
+                PartAssyUpdateDelegate UpdateFunc = null;
+                switch (e.ColumnIndex) 
+                {
+                    case 0:
+                        UpdateFunc = new PartAssyUpdateDelegate(part_AssyTableAdapter.UpdateAssy);
+                        break;
+                    case 1:
+                        UpdateFunc = new PartAssyUpdateDelegate(part_AssyTableAdapter.UpdatePart);
+                        break;
+                    case 2:
+                        UpdateFunc = new PartAssyUpdateDelegate(part_AssyTableAdapter.UpdateQty);
+                        break;
+                    default:
+                        Debug.WriteLine("Part Assy table column index out of range");
+                        break;
 
+                }
+            
+                    //TODO: add SqlException handling
+                try
+                {
+                    bool isNew = AssyPartView.Rows[e.RowIndex].IsNewRow;
+                    if (newRow)
+                    {
+                        int rowsInserted = part_AssyTableAdapter.Insert((long)AssyPartView[1, e.RowIndex].Value,
+                       (long)AssyPartView[0, e.RowIndex].Value, Convert.ToInt64(AssyPartView[2, e.RowIndex].Value.ToString()));
+                        newRow = false;
+                    }
+                    else
+                    {
+                        int rowsUpdated = UpdateFunc(Convert.ToInt64(AssyPartView[2, e.RowIndex].Value.ToString()),
+                        (long)AssyPartView[1, e.RowIndex].Value,
+                        (long)AssyPartView[0, e.RowIndex].Value);
+                    }
+                    
+                }
+                catch (SqlException exc)
+                {
+                    
+                    newRow = false;
+                    this.part_AssyTableAdapter.Fill(this.assyPartDS.Part_Assy);
+                    MessageBox.Show(exc.Message);
+
+                }
             }
-                //TODO: add SqlException handling            
-                UpdateFunc(Convert.ToInt64(dataGridView1[2, e.RowIndex].Value.ToString()),
-                    (long)dataGridView1[1, e.RowIndex].Value, 
-                    (long)dataGridView1[0, e.RowIndex].Value);
             
         }
-        private delegate int PartAssyUpdateDelegate(long Qty, long Part, long Assy); 
+        private delegate int PartAssyUpdateDelegate(long Qty, long Part, long Assy);
+
+        private void AssyPartView_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
+        {
+            int rowInd = e.Row.Index;
+            part_AssyTableAdapter.Delete1((long)AssyPartView[1, rowInd].Value,
+                        (long)AssyPartView[0, rowInd].Value);
+        }
+
+        private void AssyPartView_UserAddedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            newRow = true;
+        }
+        private bool newRow = false;
     }
 }
