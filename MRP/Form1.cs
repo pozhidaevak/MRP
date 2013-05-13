@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace MRP
 {
@@ -34,14 +35,7 @@ namespace MRP
             this.assyTableAdapter.Fill(this.dataSet.Assy);
            
            
-           
-            
-            // TODO: данная строка кода позволяет загрузить данные в таблицу "assyPartDS.AssyPart". При необходимости она может быть перемещена или удалена.
-            //this.assyPartTableAdapter.Fill(this.assyPartDS.AssyPart);
-            this.partTableAdapter1.Fill(this.assyPartDS.Part);
-            // TODO: данная строка кода позволяет загрузить данные в таблицу "assyPartDS.Part_Assy". При необходимости она может быть перемещена или удалена.
-            this.part_AssyTableAdapter.Fill(this.assyPartDS.Part_Assy);
-            // TODO: данная строка кода позволяет загрузить данные в таблицу "dataSet.Assy". При необходимости она может быть перемещена или удалена.
+        
             
         }
 
@@ -51,12 +45,29 @@ namespace MRP
         {
             //MessageBox.Show(dataGridView1[0,0].Value.ToString());
             //MessageBox.Show(assyTableAdapter1.GetIDByName2(dataGridView1[0, e.RowIndex].Value.ToString()).ToString());
-            if (e.ColumnIndex == 2)
-            {//можно изменять только количество
-                part_AssyTableAdapter.UpdateQty(Convert.ToInt64(dataGridView1[2, e.RowIndex].Value.ToString()),
+            PartAssyUpdateDelegate UpdateFunc = null;
+            switch (e.ColumnIndex) 
+            {
+                case 0:
+                    UpdateFunc = new PartAssyUpdateDelegate(part_AssyTableAdapter.UpdateAssy);
+                    break;
+                case 1:
+                    UpdateFunc = new PartAssyUpdateDelegate(part_AssyTableAdapter.UpdatePart);
+                    break;
+                case 2:
+                    UpdateFunc = new PartAssyUpdateDelegate(part_AssyTableAdapter.UpdateQty);
+                    break;
+                default:
+                    Debug.WriteLine("Part Assy table column index out of range");
+                    break;
+
+            }
+                //TODO: add SqlException handling            
+                UpdateFunc(Convert.ToInt64(dataGridView1[2, e.RowIndex].Value.ToString()),
                     (long)dataGridView1[1, e.RowIndex].Value, 
                     (long)dataGridView1[0, e.RowIndex].Value);
-            }
+            
         }
+        private delegate int PartAssyUpdateDelegate(long Qty, long Part, long Assy); 
     }
 }

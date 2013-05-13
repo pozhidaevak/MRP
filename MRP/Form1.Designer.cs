@@ -30,29 +30,26 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dataSet = new MRP.dataSet();
+            this.продуктDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.assyBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.assyTableAdapter = new MRP.dataSetTableAdapters.AssyTableAdapter();
-            this.assyPartBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dataSet = new MRP.dataSet();
+            this.компонентDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.partBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.assyPartDS1 = new MRP.AssyPartDS();
+            this.количествоDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.partAssyBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.assyPartDS = new MRP.AssyPartDS();
-            this.assyPartTableAdapter = new MRP.AssyPartDSTableAdapters.AssyPartTableAdapter();
+            this.assyTableAdapter = new MRP.dataSetTableAdapters.AssyTableAdapter();
             this.assyTableAdapter1 = new MRP.AssyPartDSTableAdapters.AssyTableAdapter();
             this.partTableAdapter1 = new MRP.AssyPartDSTableAdapters.PartTableAdapter();
-            this.partAssyBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.part_AssyTableAdapter = new MRP.AssyPartDSTableAdapters.Part_AssyTableAdapter();
-            this.assyPartDS1 = new MRP.AssyPartDS();
-            this.partBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.продуктDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.компонентDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.количествоDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assyBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assyPartBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assyPartDS)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.partAssyBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assyPartDS1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.partBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assyPartDS1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.partAssyBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assyPartDS)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -71,61 +68,6 @@
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEndEdit);
             // 
-            // dataSet
-            // 
-            this.dataSet.DataSetName = "dataSet";
-            this.dataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // assyBindingSource
-            // 
-            this.assyBindingSource.DataMember = "Assy";
-            this.assyBindingSource.DataSource = this.dataSet;
-            // 
-            // assyTableAdapter
-            // 
-            this.assyTableAdapter.ClearBeforeFill = true;
-            // 
-            // assyPartBindingSource
-            // 
-            this.assyPartBindingSource.DataMember = "AssyPart";
-            this.assyPartBindingSource.DataSource = this.assyPartDS;
-            // 
-            // assyPartDS
-            // 
-            this.assyPartDS.DataSetName = "AssyPartDS";
-            this.assyPartDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // assyPartTableAdapter
-            // 
-            this.assyPartTableAdapter.ClearBeforeFill = true;
-            // 
-            // assyTableAdapter1
-            // 
-            this.assyTableAdapter1.ClearBeforeFill = true;
-            // 
-            // partTableAdapter1
-            // 
-            this.partTableAdapter1.ClearBeforeFill = true;
-            // 
-            // partAssyBindingSource
-            // 
-            this.partAssyBindingSource.DataMember = "Part_Assy";
-            this.partAssyBindingSource.DataSource = this.assyPartDS;
-            // 
-            // part_AssyTableAdapter
-            // 
-            this.part_AssyTableAdapter.ClearBeforeFill = true;
-            // 
-            // assyPartDS1
-            // 
-            this.assyPartDS1.DataSetName = "AssyPartDS";
-            this.assyPartDS1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // partBindingSource
-            // 
-            this.partBindingSource.DataMember = "Part";
-            this.partBindingSource.DataSource = this.assyPartDS1;
-            // 
             // продуктDataGridViewTextBoxColumn
             // 
             this.продуктDataGridViewTextBoxColumn.DataPropertyName = "Продукт";
@@ -136,6 +78,16 @@
             this.продуктDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.продуктDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.продуктDataGridViewTextBoxColumn.ValueMember = "ASSY_ID";
+            // 
+            // assyBindingSource
+            // 
+            this.assyBindingSource.DataMember = "Assy";
+            this.assyBindingSource.DataSource = this.dataSet;
+            // 
+            // dataSet
+            // 
+            this.dataSet.DataSetName = "dataSet";
+            this.dataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // компонентDataGridViewTextBoxColumn
             // 
@@ -148,11 +100,47 @@
             this.компонентDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.компонентDataGridViewTextBoxColumn.ValueMember = "PART_ID";
             // 
+            // partBindingSource
+            // 
+            this.partBindingSource.DataMember = "Part";
+            this.partBindingSource.DataSource = this.assyPartDS1;
+            // 
+            // assyPartDS1
+            // 
+            this.assyPartDS1.DataSetName = "AssyPartDS";
+            this.assyPartDS1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // количествоDataGridViewTextBoxColumn
             // 
             this.количествоDataGridViewTextBoxColumn.DataPropertyName = "Количество";
             this.количествоDataGridViewTextBoxColumn.HeaderText = "Количество";
             this.количествоDataGridViewTextBoxColumn.Name = "количествоDataGridViewTextBoxColumn";
+            // 
+            // partAssyBindingSource
+            // 
+            this.partAssyBindingSource.DataMember = "Part_Assy";
+            this.partAssyBindingSource.DataSource = this.assyPartDS;
+            // 
+            // assyPartDS
+            // 
+            this.assyPartDS.DataSetName = "AssyPartDS";
+            this.assyPartDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // assyTableAdapter
+            // 
+            this.assyTableAdapter.ClearBeforeFill = true;
+            // 
+            // assyTableAdapter1
+            // 
+            this.assyTableAdapter1.ClearBeforeFill = true;
+            // 
+            // partTableAdapter1
+            // 
+            this.partTableAdapter1.ClearBeforeFill = true;
+            // 
+            // part_AssyTableAdapter
+            // 
+            this.part_AssyTableAdapter.ClearBeforeFill = true;
             // 
             // Form1
             // 
@@ -164,13 +152,12 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assyBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assyPartBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assyPartDS)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.partAssyBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assyPartDS1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.partBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assyPartDS1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.partAssyBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assyPartDS)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -179,8 +166,6 @@
 
         private System.Windows.Forms.DataGridView dataGridView1;
         private AssyPartDS assyPartDS;
-        private System.Windows.Forms.BindingSource assyPartBindingSource;
-        private AssyPartDSTableAdapters.AssyPartTableAdapter assyPartTableAdapter;
         private AssyPartDSTableAdapters.AssyTableAdapter assyTableAdapter1;
         private AssyPartDSTableAdapters.PartTableAdapter partTableAdapter1;
         private dataSet dataSet;

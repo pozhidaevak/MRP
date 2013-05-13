@@ -8,7 +8,7 @@
   <Shapes>
     <Shape ID="DesignTable:Assy" ZOrder="5" X="338" Y="70" Height="139" Width="167" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="58" />
     <Shape ID="DesignTable:Part" ZOrder="4" X="338" Y="279" Height="139" Width="165" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="75" />
-    <Shape ID="DesignTable:Part_Assy" ZOrder="1" X="70" Y="70" Height="139" Width="198" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="75" />
+    <Shape ID="DesignTable:Part_Assy" ZOrder="1" X="70" Y="70" Height="173" Width="198" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="75" />
   </Shapes>
   <Connectors>
     <Connector ID="DesignRelation:Relationship1_Assy" ZOrder="3" LineWidth="11">
@@ -35,7 +35,7 @@
         </Point>
         <Point>
           <X>251</X>
-          <Y>209</Y>
+          <Y>243</Y>
         </Point>
       </RoutePoints>
     </Connector>
