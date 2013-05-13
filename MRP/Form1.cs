@@ -27,12 +27,19 @@ namespace MRP
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            // TODO: данная строка кода позволяет загрузить данные в таблицу "assyPartDS1.Part". При необходимости она может быть перемещена или удалена.
-            this.partTableAdapter1.Fill(this.assyPartDS1.Part);
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "assyPartDS.Part". При необходимости она может быть перемещена или удалена.
+            this.partTableAdapter.Fill(this.assyPartDS.Part);
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "assyPartDS.Assy". При необходимости она может быть перемещена или удалена.
+            this.assyTableAdapter.Fill(this.assyPartDS.Assy);
             // TODO: данная строка кода позволяет загрузить данные в таблицу "assyPartDS.Part_Assy". При необходимости она может быть перемещена или удалена.
             this.part_AssyTableAdapter.Fill(this.assyPartDS.Part_Assy);
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "assyPartDS1.Part". При необходимости она может быть перемещена или удалена.
+            //this.partTableAdapter.Fill(this.assyPartDS.Part);
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "assyPartDS.Part_Assy". При необходимости она может быть перемещена или удалена.
+           
             // TODO: данная строка кода позволяет загрузить данные в таблицу "dataSet.Assy". При необходимости она может быть перемещена или удалена.
-            this.assyTableAdapter.Fill(this.dataSet.Assy);
+            //this.assyTableAdapter.Fill(this.assyPartDS.Assy);
+            this.part_AssyTableAdapter.Fill(this.assyPartDS.Part_Assy);
             
         }
 
@@ -106,5 +113,20 @@ namespace MRP
             newRow = true;
         }
         private bool newRow = false;
+
+        private void PartView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+           // if (PartView[0, e.RowIndex].Value != null && PartView[1, e.RowIndex].Value != null 
+           //    && PartView[0, e.RowIndex].Value.ToString().Length > 0 && PartView[1, e.RowIndex].Value.ToString().Length > 0)
+            //partBindingSource.EndEdit();
+            
+
+
+        }
+
+        private void PartView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

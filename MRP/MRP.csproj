@@ -54,15 +54,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AssyPartDS.xsd</DependentUpon>
     </Compile>
-    <Compile Include="dataSet.cs">
-      <DependentUpon>dataSet.xsd</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="dataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>dataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,17 +84,6 @@
     </None>
     <None Include="AssyPartDS.xss">
       <DependentUpon>AssyPartDS.xsd</DependentUpon>
-    </None>
-    <None Include="dataSet.xsc">
-      <DependentUpon>dataSet.xsd</DependentUpon>
-    </None>
-    <None Include="dataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>dataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="dataSet.xss">
-      <DependentUpon>dataSet.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
