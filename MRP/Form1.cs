@@ -27,6 +27,20 @@ namespace MRP
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "assyPartDS.Purchase". При необходимости она может быть перемещена или удалена.
+            this.purchaseTableAdapter.Fill(this.assyPartDS.Purchase);
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "assyPartDS.Order". При необходимости она может быть перемещена или удалена.
+            this.orderTableAdapter.Fill(this.assyPartDS.Order);
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "assyPartDS.Client". При необходимости она может быть перемещена или удалена.
+            this.clientTableAdapter.Fill(this.assyPartDS.Client);
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "assyPartDS1.Client". При необходимости она может быть перемещена или удалена.
+            this.clientTableAdapter.Fill(this.assyPartDS1.Client);
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "assyPartDS.Assy". При необходимости она может быть перемещена или удалена.
+            this.assyTableAdapter.Fill(this.assyPartDS.Assy);
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "assyPartDS.Part". При необходимости она может быть перемещена или удалена.
+            this.partTableAdapter.Fill(this.assyPartDS.Part);
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "assyPartDS.Part_Assy". При необходимости она может быть перемещена или удалена.
+            this.part_AssyTableAdapter.Fill(this.assyPartDS.Part_Assy);
             // TODO: данная строка кода позволяет загрузить данные в таблицу "assyPartDS.Part". При необходимости она может быть перемещена или удалена.
             this.partTableAdapter.Fill(this.assyPartDS.Part);
             // TODO: данная строка кода позволяет загрузить данные в таблицу "assyPartDS.Assy". При необходимости она может быть перемещена или удалена.
@@ -39,7 +53,8 @@ namespace MRP
            
             // TODO: данная строка кода позволяет загрузить данные в таблицу "dataSet.Assy". При необходимости она может быть перемещена или удалена.
             //this.assyTableAdapter.Fill(this.assyPartDS.Assy);
-            this.part_AssyTableAdapter.Fill(this.assyPartDS.Part_Assy);
+            //this.part_AssyTableAdapter.Fill(this.assyPartDS.Part_Assy);
+            
             
         }
 
@@ -73,7 +88,7 @@ namespace MRP
                     //TODO: add SqlException handling
                 try
                 {
-                    bool isNew = AssyPartView.Rows[e.RowIndex].IsNewRow;
+                    
                     if (newRow)
                     {
                         int rowsInserted = part_AssyTableAdapter.Insert((long)AssyPartView[1, e.RowIndex].Value,
@@ -82,9 +97,8 @@ namespace MRP
                     }
                     else
                     {
-                        int rowsUpdated = UpdateFunc(Convert.ToInt64(AssyPartView[2, e.RowIndex].Value.ToString()),
-                        (long)AssyPartView[1, e.RowIndex].Value,
-                        (long)AssyPartView[0, e.RowIndex].Value);
+                        int rowsUpdated = UpdateFunc((long)AssyPartView[e.ColumnIndex, e.RowIndex].Value,
+                        (long)AssyPartView[3, e.RowIndex].Value);
                     }
                     
                 }
@@ -99,13 +113,13 @@ namespace MRP
             }
             
         }
-        private delegate int PartAssyUpdateDelegate(long Qty, long Part, long Assy);
+        private delegate int PartAssyUpdateDelegate(long item, long ID);
 
         private void AssyPartView_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
         {
             int rowInd = e.Row.Index;
-            part_AssyTableAdapter.Delete1((long)AssyPartView[1, rowInd].Value,
-                        (long)AssyPartView[0, rowInd].Value);
+            part_AssyTableAdapter.Delete1(
+                        (long)AssyPartView[3, rowInd].Value);
         }
 
         private void AssyPartView_UserAddedRow(object sender, DataGridViewRowEventArgs e)
@@ -116,17 +130,108 @@ namespace MRP
 
         private void PartView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-           // if (PartView[0, e.RowIndex].Value != null && PartView[1, e.RowIndex].Value != null 
-           //    && PartView[0, e.RowIndex].Value.ToString().Length > 0 && PartView[1, e.RowIndex].Value.ToString().Length > 0)
-            //partBindingSource.EndEdit();
-            
+            if (PartView[0, e.RowIndex].Value != null && PartView[1, e.RowIndex].Value != null
+              && PartView[0, e.RowIndex].Value.ToString().Length > 0 && PartView[1, e.RowIndex].Value.ToString().Length > 0)
+            {
+                partBindingSource.EndEdit();
+                assyPartDS.GetChanges();
+                partTableAdapter.Update(assyPartDS);
+                assyPartDS.AcceptChanges();
+            }
 
 
         }
 
-        private void PartView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void PartView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
+            try
+            {
 
+                partBindingSource.EndEdit();
+                assyPartDS.GetChanges();
+                
+                partTableAdapter.Update(assyPartDS);
+                
+                assyPartDS.AcceptChanges();
+            }
+            catch (SqlException exc)
+            {
+                MessageBox.Show(exc.Message);
+                assyPartDS.RejectChanges();
+                //this.assyTableAdapter.Fill(this.assyPartDS.Assy);
+                //this.part_AssyTableAdapter.Fill(this.assyPartDS.Part_Assy);
+            }
         }
+
+        
+
+        private void ClientView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridView dgv = (DataGridView)sender;
+            for (int i = 0; i < dgv.ColumnCount; ++i)
+            {
+                if (dgv[i, e.RowIndex].Value == null || dgv[i, e.RowIndex].Value.ToString().Length < 1)
+                    return;
+            }
+            clientBindingSource.EndEdit();
+            assyPartDS.GetChanges();
+            clientTableAdapter.Update(assyPartDS);
+            assyPartDS.AcceptChanges();
+            
+        }
+
+        private void ClientView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            try
+            {
+                clientBindingSource.EndEdit();
+                assyPartDS.GetChanges();
+                clientTableAdapter.Update(assyPartDS);
+                
+                assyPartDS.AcceptChanges();
+            }
+            catch (SqlException exc)
+            {
+                MessageBox.Show(exc.Message);
+                assyPartDS.RejectChanges();
+                
+            }
+        }
+
+        private void OrderView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridView dgv = (DataGridView)sender;
+            for (int i = 0; i < dgv.ColumnCount; ++i)
+            {
+                if (dgv[i, e.RowIndex].Value == null || dgv[i, e.RowIndex].Value.ToString().Length < 1)
+                    return;
+            }
+            orderBindingSource.EndEdit();
+            assyPartDS.GetChanges();
+            orderTableAdapter.Update(assyPartDS);
+            assyPartDS.AcceptChanges();
+        }
+
+        private void OrderView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            try
+            {
+                orderBindingSource.EndEdit();
+                assyPartDS.GetChanges();
+                orderTableAdapter.Update(assyPartDS);
+                assyPartDS.AcceptChanges();
+            }
+            catch (SqlException exc)
+            {
+                MessageBox.Show(exc.Message);
+                assyPartDS.RejectChanges();
+                
+            }
+        }
+
+
+       
+
+       
     }
 }
