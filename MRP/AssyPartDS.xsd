@@ -158,7 +158,7 @@ WHERE     (Name = @n)</CommandText>
                   </DbCommand>
                 </InsertCommand>
                 <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT PART_ID, ASSY_ID, Qty FROM dbo.Part_Assy</CommandText>
                     <Parameters />
                   </DbCommand>
@@ -166,30 +166,9 @@ WHERE     (Name = @n)</CommandText>
               </DbSource>
             </MainSource>
             <Mappings>
-              <Mapping SourceColumn="PART_ID" DataSetColumn="PART_ID" />
-              <Mapping SourceColumn="ASSY_ID" DataSetColumn="ASSY_ID" />
-              <Mapping SourceColumn="Qty" DataSetColumn="Qty" />
-            </Mappings>
-            <Sources />
-          </TableAdapter>
-          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="AssyPartTableAdapter" GeneratorDataComponentClassName="AssyPartTableAdapter" Name="AssyPart" UserDataComponentName="AssyPartTableAdapter">
-            <MainSource>
-              <DbSource ConnectionRef="Db (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
-                <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT     Assy.Name AS Продукт, Part.Name AS Компонент, Part_Assy.Qty AS [Кол-во]
-FROM         Assy INNER JOIN
-                      Part_Assy ON Assy.ASSY_ID = Part_Assy.ASSY_ID INNER JOIN
-                      Part ON Part_Assy.PART_ID = Part.PART_ID</CommandText>
-                    <Parameters />
-                  </DbCommand>
-                </SelectCommand>
-              </DbSource>
-            </MainSource>
-            <Mappings>
-              <Mapping SourceColumn="Продукт" DataSetColumn="Продукт" />
-              <Mapping SourceColumn="Компонент" DataSetColumn="Компонент" />
-              <Mapping SourceColumn="Кол-во" DataSetColumn="Кол-во" />
+              <Mapping SourceColumn="PART_ID" DataSetColumn="Компонент" />
+              <Mapping SourceColumn="ASSY_ID" DataSetColumn="Продукт" />
+              <Mapping SourceColumn="Qty" DataSetColumn="Количество" />
             </Mappings>
             <Sources>
               <DbSource ConnectionRef="Db (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateQty" Modifier="Public" Name="UpdateQty" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="UpdateQty">
@@ -248,30 +227,9 @@ WHERE     (PART_ID = @p) AND (ASSY_ID = @a)</CommandText>
         <xs:element name="Part_Assy" msprop:Generator_TableClassName="Part_AssyDataTable" msprop:Generator_TableVarName="tablePart_Assy" msprop:Generator_TablePropName="Part_Assy" msprop:Generator_RowDeletingName="Part_AssyRowDeleting" msprop:Generator_RowChangingName="Part_AssyRowChanging" msprop:Generator_RowEvHandlerName="Part_AssyRowChangeEventHandler" msprop:Generator_RowDeletedName="Part_AssyRowDeleted" msprop:Generator_UserTableName="Part_Assy" msprop:Generator_RowChangedName="Part_AssyRowChanged" msprop:Generator_RowEvArgName="Part_AssyRowChangeEvent" msprop:Generator_RowClassName="Part_AssyRow">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="PART_ID" msprop:Generator_ColumnVarNameInTable="columnPART_ID" msprop:Generator_ColumnPropNameInRow="PART_ID" msprop:Generator_ColumnPropNameInTable="PART_IDColumn" msprop:Generator_UserColumnName="PART_ID" type="xs:long" />
-              <xs:element name="ASSY_ID" msprop:Generator_ColumnVarNameInTable="columnASSY_ID" msprop:Generator_ColumnPropNameInRow="ASSY_ID" msprop:Generator_ColumnPropNameInTable="ASSY_IDColumn" msprop:Generator_UserColumnName="ASSY_ID" type="xs:long" />
-              <xs:element name="Qty" msprop:Generator_ColumnVarNameInTable="columnQty" msprop:Generator_ColumnPropNameInRow="Qty" msprop:Generator_ColumnPropNameInTable="QtyColumn" msprop:Generator_UserColumnName="Qty" type="xs:long" />
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="AssyPart" msprop:Generator_TableClassName="AssyPartDataTable" msprop:Generator_TableVarName="tableAssyPart" msprop:Generator_RowChangedName="AssyPartRowChanged" msprop:Generator_TablePropName="AssyPart" msprop:Generator_RowDeletingName="AssyPartRowDeleting" msprop:Generator_RowChangingName="AssyPartRowChanging" msprop:Generator_RowEvHandlerName="AssyPartRowChangeEventHandler" msprop:Generator_RowDeletedName="AssyPartRowDeleted" msprop:Generator_RowClassName="AssyPartRow" msprop:Generator_UserTableName="AssyPart" msprop:Generator_RowEvArgName="AssyPartRowChangeEvent">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="Продукт" msprop:Generator_ColumnVarNameInTable="columnПродукт" msprop:Generator_ColumnPropNameInRow="Продукт" msprop:Generator_ColumnPropNameInTable="ПродуктColumn" msprop:Generator_UserColumnName="Продукт">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="30" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="Компонент" msprop:Generator_ColumnVarNameInTable="columnКомпонент" msprop:Generator_ColumnPropNameInRow="Компонент" msprop:Generator_ColumnPropNameInTable="КомпонентColumn" msprop:Generator_UserColumnName="Компонент">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="30" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="Кол-во" msprop:Generator_ColumnVarNameInTable="_columnКол_во" msprop:Generator_ColumnPropNameInRow="_Кол_во" msprop:Generator_ColumnPropNameInTable="_Кол_воColumn" msprop:Generator_UserColumnName="Кол-во" type="xs:long" />
+              <xs:element name="Компонент" msprop:Generator_ColumnVarNameInTable="columnКомпонент" msprop:Generator_ColumnPropNameInRow="Компонент" msprop:Generator_ColumnPropNameInTable="КомпонентColumn" msprop:Generator_UserColumnName="Компонент" type="xs:long" />
+              <xs:element name="Продукт" msprop:Generator_ColumnVarNameInTable="columnПродукт" msprop:Generator_ColumnPropNameInRow="Продукт" msprop:Generator_ColumnPropNameInTable="ПродуктColumn" msprop:Generator_UserColumnName="Продукт" type="xs:long" />
+              <xs:element name="Количество" msprop:Generator_ColumnVarNameInTable="columnКоличество" msprop:Generator_ColumnPropNameInRow="Количество" msprop:Generator_ColumnPropNameInTable="КоличествоColumn" msprop:Generator_UserColumnName="Количество" type="xs:long" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -288,8 +246,8 @@ WHERE     (PART_ID = @p) AND (ASSY_ID = @a)</CommandText>
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="Relationship1_Assy" msdata:parent="Assy" msdata:child="Part_Assy" msdata:parentkey="ASSY_ID" msdata:childkey="ASSY_ID" msprop:Generator_UserChildTable="Part_Assy" msprop:Generator_ChildPropName="GetPart_AssyRows" msprop:Generator_UserRelationName="Relationship1_Assy" msprop:Generator_ParentPropName="AssyRow" msprop:Generator_RelationVarName="relationRelationship1_Assy" msprop:Generator_UserParentTable="Assy" />
-      <msdata:Relationship name="Relationship1_Part" msdata:parent="Part" msdata:child="Part_Assy" msdata:parentkey="PART_ID" msdata:childkey="PART_ID" msprop:Generator_UserChildTable="Part_Assy" msprop:Generator_ChildPropName="GetPart_AssyRows" msprop:Generator_UserRelationName="Relationship1_Part" msprop:Generator_ParentPropName="PartRow" msprop:Generator_RelationVarName="relationRelationship1_Part" msprop:Generator_UserParentTable="Part" />
+      <msdata:Relationship name="Relationship1_Assy" msdata:parent="Assy" msdata:child="Part_Assy" msdata:parentkey="ASSY_ID" msdata:childkey="Продукт" msprop:Generator_UserChildTable="Part_Assy" msprop:Generator_ChildPropName="GetPart_AssyRows" msprop:Generator_UserRelationName="Relationship1_Assy" msprop:Generator_ParentPropName="AssyRow" msprop:Generator_RelationVarName="relationRelationship1_Assy" msprop:Generator_UserParentTable="Assy" />
+      <msdata:Relationship name="Relationship1_Part" msdata:parent="Part" msdata:child="Part_Assy" msdata:parentkey="PART_ID" msdata:childkey="Компонент" msprop:Generator_UserChildTable="Part_Assy" msprop:Generator_ChildPropName="GetPart_AssyRows" msprop:Generator_UserRelationName="Relationship1_Part" msprop:Generator_ParentPropName="PartRow" msprop:Generator_RelationVarName="relationRelationship1_Part" msprop:Generator_UserParentTable="Part" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>

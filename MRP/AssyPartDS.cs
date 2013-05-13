@@ -12,6 +12,10 @@ namespace MRP {
 }
 
 namespace MRP.AssyPartDSTableAdapters {
+    partial class Part_AssyTableAdapter
+    {
+    }
+
     partial class AssyTableAdapter
     {
     }

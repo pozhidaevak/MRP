@@ -26,6 +26,10 @@ namespace MRP
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "assyPartDS1.Part". При необходимости она может быть перемещена или удалена.
+            this.partTableAdapter1.Fill(this.assyPartDS1.Part);
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "assyPartDS.Part_Assy". При необходимости она может быть перемещена или удалена.
+            this.part_AssyTableAdapter.Fill(this.assyPartDS.Part_Assy);
             // TODO: данная строка кода позволяет загрузить данные в таблицу "dataSet.Assy". При необходимости она может быть перемещена или удалена.
             this.assyTableAdapter.Fill(this.dataSet.Assy);
            
@@ -33,10 +37,10 @@ namespace MRP
            
             
             // TODO: данная строка кода позволяет загрузить данные в таблицу "assyPartDS.AssyPart". При необходимости она может быть перемещена или удалена.
-            this.assyPartTableAdapter.Fill(this.assyPartDS.AssyPart);
+            //this.assyPartTableAdapter.Fill(this.assyPartDS.AssyPart);
             this.partTableAdapter1.Fill(this.assyPartDS.Part);
             // TODO: данная строка кода позволяет загрузить данные в таблицу "assyPartDS.Part_Assy". При необходимости она может быть перемещена или удалена.
-            //this.part_AssyTableAdapter.Fill(this.assyPartDS.Part_Assy);
+            this.part_AssyTableAdapter.Fill(this.assyPartDS.Part_Assy);
             // TODO: данная строка кода позволяет загрузить данные в таблицу "dataSet.Assy". При необходимости она может быть перемещена или удалена.
             
         }
@@ -49,9 +53,9 @@ namespace MRP
             //MessageBox.Show(assyTableAdapter1.GetIDByName2(dataGridView1[0, e.RowIndex].Value.ToString()).ToString());
             if (e.ColumnIndex == 2)
             {//можно изменять только количество
-                assyPartTableAdapter.UpdateQty(Convert.ToInt64(dataGridView1[2, e.RowIndex].Value.ToString()),
-                    (long)partTableAdapter1.GetIDByName(dataGridView1[1, e.RowIndex].Value.ToString()), 
-                    (long)assyTableAdapter1.GetIDByName2(dataGridView1[0, e.RowIndex].Value.ToString()));
+                part_AssyTableAdapter.UpdateQty(Convert.ToInt64(dataGridView1[2, e.RowIndex].Value.ToString()),
+                    (long)dataGridView1[1, e.RowIndex].Value, 
+                    (long)dataGridView1[0, e.RowIndex].Value);
             }
         }
     }
