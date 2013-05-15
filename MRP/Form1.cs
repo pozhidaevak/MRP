@@ -229,6 +229,28 @@ namespace MRP
             }
         }
 
+        private void calcButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //Get input data from text boxes
+                int minStock = Convert.ToInt32(minStockBox.Text);
+                int maxStock = Convert.ToInt32(maxStockBox.Text);
+                int day = Convert.ToInt32(daysBox.Text);
+                int endDay = Convert.ToInt32(endDayBox.Text);
+
+                //TODO add testing of input data
+
+                DataClasses1DataContext dc = new DataClasses1DataContext();
+                dc.CalcMRP(1, endDay, minStock, day, maxStock);
+                this.purchaseTableAdapter.Fill(this.assyPartDS.Purchase);
+            }
+            catch (Exception exp)
+            {
+                MessageBox.Show(exp.Message);
+            }
+        }
+
 
        
 

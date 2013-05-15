@@ -30,28 +30,28 @@
         {
             this.components = new System.ComponentModel.Container();
             this.AssyPartView = new System.Windows.Forms.DataGridView();
+            this.продуктDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.assyBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.assyPartDS = new MRP.AssyPartDS();
+            this.компонентDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.partBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.количествоDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.partAssyBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.PartView = new System.Windows.Forms.DataGridView();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PART_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ClientView = new System.Windows.Forms.DataGridView();
+            this.nameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cLIENTIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clientBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.OrderView = new System.Windows.Forms.DataGridView();
             this.dateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.qtyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cLIENTIDDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.clientBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.assyPartDS = new MRP.AssyPartDS();
             this.aSSYIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.assyBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.orderBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.nameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cLIENTIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.partBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.продуктDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.компонентDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.количествоDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.partAssyBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.part_AssyTableAdapter = new MRP.AssyPartDSTableAdapters.Part_AssyTableAdapter();
             this.partTableAdapter = new MRP.AssyPartDSTableAdapters.PartTableAdapter();
             this.assyTableAdapter = new MRP.AssyPartDSTableAdapters.AssyTableAdapter();
@@ -60,18 +60,31 @@
             this.orderTableAdapter = new MRP.AssyPartDSTableAdapters.OrderTableAdapter();
             this.purchaseBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.purchaseTableAdapter = new MRP.AssyPartDSTableAdapters.PurchaseTableAdapter();
+            this.purchaseView = new System.Windows.Forms.DataGridView();
+            this.dateDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pARTIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.qtyDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pURCHASEIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.purchaseBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.calcButton = new System.Windows.Forms.Button();
+            this.minStockBox = new System.Windows.Forms.TextBox();
+            this.maxStockBox = new System.Windows.Forms.TextBox();
+            this.daysBox = new System.Windows.Forms.TextBox();
+            this.endDayBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.AssyPartView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PartView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ClientView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.OrderView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.clientBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assyPartDS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assyBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.orderBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assyPartDS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.partBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.partAssyBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PartView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ClientView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clientBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.OrderView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.orderBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assyPartDS1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.purchaseBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.purchaseView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.purchaseBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // AssyPartView
@@ -93,6 +106,63 @@
             this.AssyPartView.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.AssyPartView_UserAddedRow);
             this.AssyPartView.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.AssyPartView_UserDeletingRow);
             // 
+            // продуктDataGridViewTextBoxColumn
+            // 
+            this.продуктDataGridViewTextBoxColumn.DataPropertyName = "Продукт";
+            this.продуктDataGridViewTextBoxColumn.DataSource = this.assyBindingSource;
+            this.продуктDataGridViewTextBoxColumn.DisplayMember = "Name";
+            this.продуктDataGridViewTextBoxColumn.HeaderText = "Продукт";
+            this.продуктDataGridViewTextBoxColumn.Name = "продуктDataGridViewTextBoxColumn";
+            this.продуктDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.продуктDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.продуктDataGridViewTextBoxColumn.ValueMember = "ASSY_ID";
+            this.продуктDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // assyBindingSource
+            // 
+            this.assyBindingSource.DataMember = "Assy";
+            this.assyBindingSource.DataSource = this.assyPartDS;
+            // 
+            // assyPartDS
+            // 
+            this.assyPartDS.DataSetName = "AssyPartDS";
+            this.assyPartDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // компонентDataGridViewTextBoxColumn
+            // 
+            this.компонентDataGridViewTextBoxColumn.DataPropertyName = "Компонент";
+            this.компонентDataGridViewTextBoxColumn.DataSource = this.partBindingSource;
+            this.компонентDataGridViewTextBoxColumn.DisplayMember = "Name";
+            this.компонентDataGridViewTextBoxColumn.HeaderText = "Компонент";
+            this.компонентDataGridViewTextBoxColumn.Name = "компонентDataGridViewTextBoxColumn";
+            this.компонентDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.компонентDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.компонентDataGridViewTextBoxColumn.ValueMember = "PART_ID";
+            // 
+            // partBindingSource
+            // 
+            this.partBindingSource.DataMember = "Part";
+            this.partBindingSource.DataSource = this.assyPartDS;
+            // 
+            // количествоDataGridViewTextBoxColumn
+            // 
+            this.количествоDataGridViewTextBoxColumn.DataPropertyName = "Количество";
+            this.количествоDataGridViewTextBoxColumn.HeaderText = "Количество";
+            this.количествоDataGridViewTextBoxColumn.Name = "количествоDataGridViewTextBoxColumn";
+            // 
+            // iDDataGridViewTextBoxColumn
+            // 
+            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
+            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
+            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
+            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.iDDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // partAssyBindingSource
+            // 
+            this.partAssyBindingSource.DataMember = "Part_Assy";
+            this.partAssyBindingSource.DataSource = this.assyPartDS;
+            // 
             // PartView
             // 
             this.PartView.AutoGenerateColumns = false;
@@ -108,6 +178,12 @@
             this.PartView.TabIndex = 1;
             this.PartView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.PartView_CellEndEdit);
             this.PartView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.PartView_UserDeletedRow);
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Компонент";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
             // 
             // Qty
             // 
@@ -137,6 +213,26 @@
             this.ClientView.TabIndex = 2;
             this.ClientView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.ClientView_CellEndEdit);
             this.ClientView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.ClientView_UserDeletedRow);
+            // 
+            // nameDataGridViewTextBoxColumn1
+            // 
+            this.nameDataGridViewTextBoxColumn1.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn1.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn1.Name = "nameDataGridViewTextBoxColumn1";
+            this.nameDataGridViewTextBoxColumn1.Width = 80;
+            // 
+            // cLIENTIDDataGridViewTextBoxColumn
+            // 
+            this.cLIENTIDDataGridViewTextBoxColumn.DataPropertyName = "CLIENT_ID";
+            this.cLIENTIDDataGridViewTextBoxColumn.HeaderText = "CLIENT_ID";
+            this.cLIENTIDDataGridViewTextBoxColumn.Name = "cLIENTIDDataGridViewTextBoxColumn";
+            this.cLIENTIDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.cLIENTIDDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // clientBindingSource
+            // 
+            this.clientBindingSource.DataMember = "Client";
+            this.clientBindingSource.DataSource = this.assyPartDS;
             // 
             // OrderView
             // 
@@ -178,16 +274,6 @@
             this.cLIENTIDDataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.cLIENTIDDataGridViewTextBoxColumn1.ValueMember = "CLIENT_ID";
             // 
-            // clientBindingSource
-            // 
-            this.clientBindingSource.DataMember = "Client";
-            this.clientBindingSource.DataSource = this.assyPartDS;
-            // 
-            // assyPartDS
-            // 
-            this.assyPartDS.DataSetName = "AssyPartDS";
-            this.assyPartDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // aSSYIDDataGridViewTextBoxColumn
             // 
             this.aSSYIDDataGridViewTextBoxColumn.DataPropertyName = "ASSY_ID";
@@ -200,83 +286,10 @@
             this.aSSYIDDataGridViewTextBoxColumn.ValueMember = "ASSY_ID";
             this.aSSYIDDataGridViewTextBoxColumn.Width = 150;
             // 
-            // assyBindingSource
-            // 
-            this.assyBindingSource.DataMember = "Assy";
-            this.assyBindingSource.DataSource = this.assyPartDS;
-            // 
             // orderBindingSource
             // 
             this.orderBindingSource.DataMember = "Order";
             this.orderBindingSource.DataSource = this.assyPartDS;
-            // 
-            // nameDataGridViewTextBoxColumn1
-            // 
-            this.nameDataGridViewTextBoxColumn1.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn1.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn1.Name = "nameDataGridViewTextBoxColumn1";
-            this.nameDataGridViewTextBoxColumn1.Width = 80;
-            // 
-            // cLIENTIDDataGridViewTextBoxColumn
-            // 
-            this.cLIENTIDDataGridViewTextBoxColumn.DataPropertyName = "CLIENT_ID";
-            this.cLIENTIDDataGridViewTextBoxColumn.HeaderText = "CLIENT_ID";
-            this.cLIENTIDDataGridViewTextBoxColumn.Name = "cLIENTIDDataGridViewTextBoxColumn";
-            this.cLIENTIDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.cLIENTIDDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Компонент";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            // 
-            // partBindingSource
-            // 
-            this.partBindingSource.DataMember = "Part";
-            this.partBindingSource.DataSource = this.assyPartDS;
-            // 
-            // продуктDataGridViewTextBoxColumn
-            // 
-            this.продуктDataGridViewTextBoxColumn.DataPropertyName = "Продукт";
-            this.продуктDataGridViewTextBoxColumn.DataSource = this.assyBindingSource;
-            this.продуктDataGridViewTextBoxColumn.DisplayMember = "Name";
-            this.продуктDataGridViewTextBoxColumn.HeaderText = "Продукт";
-            this.продуктDataGridViewTextBoxColumn.Name = "продуктDataGridViewTextBoxColumn";
-            this.продуктDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.продуктDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.продуктDataGridViewTextBoxColumn.ValueMember = "ASSY_ID";
-            this.продуктDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // компонентDataGridViewTextBoxColumn
-            // 
-            this.компонентDataGridViewTextBoxColumn.DataPropertyName = "Компонент";
-            this.компонентDataGridViewTextBoxColumn.DataSource = this.partBindingSource;
-            this.компонентDataGridViewTextBoxColumn.DisplayMember = "Name";
-            this.компонентDataGridViewTextBoxColumn.HeaderText = "Компонент";
-            this.компонентDataGridViewTextBoxColumn.Name = "компонентDataGridViewTextBoxColumn";
-            this.компонентDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.компонентDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.компонентDataGridViewTextBoxColumn.ValueMember = "PART_ID";
-            // 
-            // количествоDataGridViewTextBoxColumn
-            // 
-            this.количествоDataGridViewTextBoxColumn.DataPropertyName = "Количество";
-            this.количествоDataGridViewTextBoxColumn.HeaderText = "Количество";
-            this.количествоDataGridViewTextBoxColumn.Name = "количествоDataGridViewTextBoxColumn";
-            // 
-            // iDDataGridViewTextBoxColumn
-            // 
-            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
-            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
-            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
-            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.iDDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // partAssyBindingSource
-            // 
-            this.partAssyBindingSource.DataMember = "Part_Assy";
-            this.partAssyBindingSource.DataSource = this.assyPartDS;
             // 
             // part_AssyTableAdapter
             // 
@@ -312,11 +325,117 @@
             // 
             this.purchaseTableAdapter.ClearBeforeFill = true;
             // 
+            // purchaseView
+            // 
+            this.purchaseView.AllowUserToAddRows = false;
+            this.purchaseView.AllowUserToDeleteRows = false;
+            this.purchaseView.AutoGenerateColumns = false;
+            this.purchaseView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.purchaseView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dateDataGridViewTextBoxColumn1,
+            this.pARTIDDataGridViewTextBoxColumn,
+            this.qtyDataGridViewTextBoxColumn1,
+            this.pURCHASEIDDataGridViewTextBoxColumn});
+            this.purchaseView.DataSource = this.purchaseBindingSource1;
+            this.purchaseView.Location = new System.Drawing.Point(29, 350);
+            this.purchaseView.Name = "purchaseView";
+            this.purchaseView.ReadOnly = true;
+            this.purchaseView.Size = new System.Drawing.Size(343, 150);
+            this.purchaseView.TabIndex = 4;
+            // 
+            // dateDataGridViewTextBoxColumn1
+            // 
+            this.dateDataGridViewTextBoxColumn1.DataPropertyName = "Date";
+            this.dateDataGridViewTextBoxColumn1.HeaderText = "День";
+            this.dateDataGridViewTextBoxColumn1.Name = "dateDataGridViewTextBoxColumn1";
+            this.dateDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // pARTIDDataGridViewTextBoxColumn
+            // 
+            this.pARTIDDataGridViewTextBoxColumn.DataPropertyName = "PART_ID";
+            this.pARTIDDataGridViewTextBoxColumn.DataSource = this.partBindingSource;
+            this.pARTIDDataGridViewTextBoxColumn.DisplayMember = "Name";
+            this.pARTIDDataGridViewTextBoxColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
+            this.pARTIDDataGridViewTextBoxColumn.HeaderText = "Компонент";
+            this.pARTIDDataGridViewTextBoxColumn.Name = "pARTIDDataGridViewTextBoxColumn";
+            this.pARTIDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.pARTIDDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.pARTIDDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.pARTIDDataGridViewTextBoxColumn.ValueMember = "PART_ID";
+            // 
+            // qtyDataGridViewTextBoxColumn1
+            // 
+            this.qtyDataGridViewTextBoxColumn1.DataPropertyName = "Qty";
+            this.qtyDataGridViewTextBoxColumn1.HeaderText = "Кол-во";
+            this.qtyDataGridViewTextBoxColumn1.Name = "qtyDataGridViewTextBoxColumn1";
+            this.qtyDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // pURCHASEIDDataGridViewTextBoxColumn
+            // 
+            this.pURCHASEIDDataGridViewTextBoxColumn.DataPropertyName = "PURCHASE_ID";
+            this.pURCHASEIDDataGridViewTextBoxColumn.HeaderText = "PURCHASE_ID";
+            this.pURCHASEIDDataGridViewTextBoxColumn.Name = "pURCHASEIDDataGridViewTextBoxColumn";
+            this.pURCHASEIDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.pURCHASEIDDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // purchaseBindingSource1
+            // 
+            this.purchaseBindingSource1.DataMember = "Purchase";
+            this.purchaseBindingSource1.DataSource = this.assyPartDS;
+            // 
+            // calcButton
+            // 
+            this.calcButton.Location = new System.Drawing.Point(404, 350);
+            this.calcButton.Name = "calcButton";
+            this.calcButton.Size = new System.Drawing.Size(75, 23);
+            this.calcButton.TabIndex = 5;
+            this.calcButton.Text = "Calc!";
+            this.calcButton.UseVisualStyleBackColor = true;
+            this.calcButton.Click += new System.EventHandler(this.calcButton_Click);
+            // 
+            // minStockBox
+            // 
+            this.minStockBox.Location = new System.Drawing.Point(576, 350);
+            this.minStockBox.Name = "minStockBox";
+            this.minStockBox.Size = new System.Drawing.Size(100, 20);
+            this.minStockBox.TabIndex = 6;
+            this.minStockBox.Text = "10";
+            // 
+            // maxStockBox
+            // 
+            this.maxStockBox.Location = new System.Drawing.Point(576, 376);
+            this.maxStockBox.Name = "maxStockBox";
+            this.maxStockBox.Size = new System.Drawing.Size(100, 20);
+            this.maxStockBox.TabIndex = 7;
+            this.maxStockBox.Text = "1000";
+            // 
+            // daysBox
+            // 
+            this.daysBox.Location = new System.Drawing.Point(576, 403);
+            this.daysBox.Name = "daysBox";
+            this.daysBox.Size = new System.Drawing.Size(100, 20);
+            this.daysBox.TabIndex = 8;
+            this.daysBox.Text = "3";
+            // 
+            // endDayBox
+            // 
+            this.endDayBox.Location = new System.Drawing.Point(576, 430);
+            this.endDayBox.Name = "endDayBox";
+            this.endDayBox.Size = new System.Drawing.Size(100, 20);
+            this.endDayBox.TabIndex = 9;
+            this.endDayBox.Text = "10";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(818, 515);
+            this.Controls.Add(this.endDayBox);
+            this.Controls.Add(this.daysBox);
+            this.Controls.Add(this.maxStockBox);
+            this.Controls.Add(this.minStockBox);
+            this.Controls.Add(this.calcButton);
+            this.Controls.Add(this.purchaseView);
             this.Controls.Add(this.OrderView);
             this.Controls.Add(this.ClientView);
             this.Controls.Add(this.PartView);
@@ -325,18 +444,21 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.AssyPartView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PartView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ClientView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.OrderView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.clientBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.assyPartDS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assyBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.orderBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.assyPartDS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.partBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.partAssyBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PartView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ClientView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clientBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.OrderView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.orderBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assyPartDS1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.purchaseBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.purchaseView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.purchaseBindingSource1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -373,6 +495,17 @@
         private System.Windows.Forms.DataGridViewComboBoxColumn aSSYIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource purchaseBindingSource;
         private AssyPartDSTableAdapters.PurchaseTableAdapter purchaseTableAdapter;
+        private System.Windows.Forms.DataGridView purchaseView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dateDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewComboBoxColumn pARTIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn qtyDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn pURCHASEIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource purchaseBindingSource1;
+        private System.Windows.Forms.Button calcButton;
+        private System.Windows.Forms.TextBox minStockBox;
+        private System.Windows.Forms.TextBox maxStockBox;
+        private System.Windows.Forms.TextBox daysBox;
+        private System.Windows.Forms.TextBox endDayBox;
     }
 }
 
