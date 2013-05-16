@@ -84,7 +84,13 @@ namespace MRP
                     throw new Exception("Invalid data");
 
                 DataClasses1DataContext dc = new DataClasses1DataContext();
-                dc.CalcMRP(1, endDay, minStock, day, maxStock);
+                switch (dc.CalcMRP(1, endDay, minStock, day, maxStock))
+                {
+                    case 1:
+                        throw new Exception("StOck overflow");
+                    case 2:
+                        throw new Exception("Very little stock");
+                }
                 this.purchaseTableAdapter.Fill(this.assyPartDS.Purchase);
             }
             catch (Exception exp)
