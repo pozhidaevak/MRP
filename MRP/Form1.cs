@@ -27,35 +27,13 @@ namespace MRP
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            // TODO: данная строка кода позволяет загрузить данные в таблицу "assyPartDS.Purchase". При необходимости она может быть перемещена или удалена.
+            //fill datagrids
             this.purchaseTableAdapter.Fill(this.assyPartDS.Purchase);
-            // TODO: данная строка кода позволяет загрузить данные в таблицу "assyPartDS.Order". При необходимости она может быть перемещена или удалена.
             this.orderTableAdapter.Fill(this.assyPartDS.Order);
-            // TODO: данная строка кода позволяет загрузить данные в таблицу "assyPartDS.Client". При необходимости она может быть перемещена или удалена.
             this.clientTableAdapter.Fill(this.assyPartDS.Client);
-            // TODO: данная строка кода позволяет загрузить данные в таблицу "assyPartDS1.Client". При необходимости она может быть перемещена или удалена.
-            this.clientTableAdapter.Fill(this.assyPartDS1.Client);
-            // TODO: данная строка кода позволяет загрузить данные в таблицу "assyPartDS.Assy". При необходимости она может быть перемещена или удалена.
             this.assyTableAdapter.Fill(this.assyPartDS.Assy);
-            // TODO: данная строка кода позволяет загрузить данные в таблицу "assyPartDS.Part". При необходимости она может быть перемещена или удалена.
             this.partTableAdapter.Fill(this.assyPartDS.Part);
-            // TODO: данная строка кода позволяет загрузить данные в таблицу "assyPartDS.Part_Assy". При необходимости она может быть перемещена или удалена.
-            this.part_AssyTableAdapter.Fill(this.assyPartDS.Part_Assy);
-            // TODO: данная строка кода позволяет загрузить данные в таблицу "assyPartDS.Part". При необходимости она может быть перемещена или удалена.
-            this.partTableAdapter.Fill(this.assyPartDS.Part);
-            // TODO: данная строка кода позволяет загрузить данные в таблицу "assyPartDS.Assy". При необходимости она может быть перемещена или удалена.
-            this.assyTableAdapter.Fill(this.assyPartDS.Assy);
-            // TODO: данная строка кода позволяет загрузить данные в таблицу "assyPartDS.Part_Assy". При необходимости она может быть перемещена или удалена.
-            this.part_AssyTableAdapter.Fill(this.assyPartDS.Part_Assy);
-            // TODO: данная строка кода позволяет загрузить данные в таблицу "assyPartDS1.Part". При необходимости она может быть перемещена или удалена.
-            //this.partTableAdapter.Fill(this.assyPartDS.Part);
-            // TODO: данная строка кода позволяет загрузить данные в таблицу "assyPartDS.Part_Assy". При необходимости она может быть перемещена или удалена.
-           
-            // TODO: данная строка кода позволяет загрузить данные в таблицу "dataSet.Assy". При необходимости она может быть перемещена или удалена.
-            //this.assyTableAdapter.Fill(this.assyPartDS.Assy);
-            //this.part_AssyTableAdapter.Fill(this.assyPartDS.Part_Assy);
-            
-            
+            this.part_AssyTableAdapter.Fill(this.assyPartDS.Part_Assy);  
         }
 
        
@@ -220,6 +198,10 @@ namespace MRP
                 assyPartDS.GetChanges();
                 orderTableAdapter.Update(assyPartDS);
                 assyPartDS.AcceptChanges();
+                //var t =((DataSet)OrderView.DataSource).Tables[0];
+                //AssyPartDSTableAdapters.TableAdapterManager q = new AssyPartDSTableAdapters.TableAdapterManager();
+                //q.UpdateAll
+
             }
             catch (SqlException exc)
             {
