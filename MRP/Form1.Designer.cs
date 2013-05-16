@@ -101,10 +101,8 @@
             this.AssyPartView.Name = "AssyPartView";
             this.AssyPartView.Size = new System.Drawing.Size(393, 150);
             this.AssyPartView.TabIndex = 0;
-            this.AssyPartView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.AssyPartView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.AssyPartView_CellEndEdit);
-            this.AssyPartView.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.AssyPartView_UserAddedRow);
-            this.AssyPartView.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.AssyPartView_UserDeletingRow);
+            this.AssyPartView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.AssyPartView_UserDeletedRow);
             // 
             // продуктDataGridViewTextBoxColumn
             // 

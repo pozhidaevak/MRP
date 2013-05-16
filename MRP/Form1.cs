@@ -14,19 +14,20 @@ namespace MRP
 {
     public partial class Form1 : Form
     {
+        private AssyPartDSTableAdapters.TableAdapterManager TAM = new AssyPartDSTableAdapters.TableAdapterManager();
         public Form1()
         {
             InitializeComponent();
         }
         
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void Form1_Load(object sender, EventArgs e)
         {
+            TAM.AssyTableAdapter = assyTableAdapter;
+            TAM.ClientTableAdapter = clientTableAdapter;
+            TAM.OrderTableAdapter = orderTableAdapter;
+            TAM.Part_AssyTableAdapter = part_AssyTableAdapter;
+            TAM.PartTableAdapter = partTableAdapter;
+            TAM.PurchaseTableAdapter = purchaseTableAdapter;
             //fill datagrids
             this.purchaseTableAdapter.Fill(this.assyPartDS.Purchase);
             this.orderTableAdapter.Fill(this.assyPartDS.Order);
@@ -36,75 +37,68 @@ namespace MRP
             this.part_AssyTableAdapter.Fill(this.assyPartDS.Part_Assy);  
         }
 
-       
+        private void CellEndEdit(DataGridView dgv, DataGridViewCellEventArgs e)
+        {
+            for (int i = 0; i < dgv.ColumnCount; ++i)
+            {
+                if (dgv[i, e.RowIndex].Value == null || dgv[i, e.RowIndex].Value.ToString().Length < 1)
+                    return;
+            }
+            try
+            {
+                ((BindingSource)dgv.DataSource).EndEdit();
+                assyPartDS.GetChanges();
+                TAM.UpdateAll(assyPartDS);
+                assyPartDS.AcceptChanges();
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+                assyPartDS.RejectChanges();
+            }
+        }
+
+        private void UserDeletedRow(DataGridView dgv, DataGridViewRowEventArgs e)
+        {
+            try
+            {
+                ((BindingSource)dgv.DataSource).EndEdit();
+                assyPartDS.GetChanges();
+                TAM.UpdateAll(assyPartDS);
+                assyPartDS.AcceptChanges();
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+                assyPartDS.RejectChanges();
+            }
+        }
 
         private void AssyPartView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            //MessageBox.Show(dataGridView1[0,0].Value.ToString());
-            //MessageBox.Show(assyTableAdapter1.GetIDByName2(dataGridView1[0, e.RowIndex].Value.ToString()).ToString());
-            if (AssyPartView[0, e.RowIndex].Value != null && AssyPartView[1, e.RowIndex].Value != null && AssyPartView[2, e.RowIndex].Value != null
-                && AssyPartView[0, e.RowIndex].Value.ToString().Length > 0 && AssyPartView[1, e.RowIndex].Value.ToString().Length > 0 && AssyPartView[2, e.RowIndex].Value.ToString().Length > 0)
+            CellEndEdit((DataGridView)sender, e);
+            /*DataGridView dgv = (DataGridView)sender;
+            for (int i = 0; i < dgv.ColumnCount; ++i)
             {
-                PartAssyUpdateDelegate UpdateFunc = null;
-                switch (e.ColumnIndex) 
-                {
-                    case 0:
-                        UpdateFunc = new PartAssyUpdateDelegate(part_AssyTableAdapter.UpdateAssy);
-                        break;
-                    case 1:
-                        UpdateFunc = new PartAssyUpdateDelegate(part_AssyTableAdapter.UpdatePart);
-                        break;
-                    case 2:
-                        UpdateFunc = new PartAssyUpdateDelegate(part_AssyTableAdapter.UpdateQty);
-                        break;
-                    default:
-                        Debug.WriteLine("Part Assy table column index out of range");
-                        break;
-
-                }
-            
-                    //TODO: add SqlException handling
-                try
-                {
-                    
-                    if (newRow)
-                    {
-                        int rowsInserted = part_AssyTableAdapter.Insert((long)AssyPartView[1, e.RowIndex].Value,
-                       (long)AssyPartView[0, e.RowIndex].Value, Convert.ToInt64(AssyPartView[2, e.RowIndex].Value.ToString()));
-                        newRow = false;
-                    }
-                    else
-                    {
-                        int rowsUpdated = UpdateFunc((long)AssyPartView[e.ColumnIndex, e.RowIndex].Value,
-                        (long)AssyPartView[3, e.RowIndex].Value);
-                    }
-                    
-                }
-                catch (SqlException exc)
-                {
-                    
-                    newRow = false;
-                    this.part_AssyTableAdapter.Fill(this.assyPartDS.Part_Assy);
-                    MessageBox.Show(exc.Message);
-
-                }
+                if (dgv[i, e.RowIndex].Value == null || dgv[i, e.RowIndex].Value.ToString().Length < 1)
+                    return;
             }
+            partAssyBindingSource.EndEdit();
+            assyPartDS.GetChanges();
+            part_AssyTableAdapter.Update(assyPartDS);
+            assyPartDS.AcceptChanges();
+                */
             
         }
-        private delegate int PartAssyUpdateDelegate(long item, long ID);
+        
 
-        private void AssyPartView_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
+        private void AssyPartView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
-            int rowInd = e.Row.Index;
-            part_AssyTableAdapter.Delete1(
-                        (long)AssyPartView[3, rowInd].Value);
+            UserDeletedRow((DataGridView)sender, e);
         }
 
-        private void AssyPartView_UserAddedRow(object sender, DataGridViewRowEventArgs e)
-        {
-            newRow = true;
-        }
-        private bool newRow = false;
+        
+       
 
         private void PartView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
@@ -127,17 +121,13 @@ namespace MRP
 
                 partBindingSource.EndEdit();
                 assyPartDS.GetChanges();
-                
                 partTableAdapter.Update(assyPartDS);
-                
                 assyPartDS.AcceptChanges();
             }
             catch (SqlException exc)
             {
                 MessageBox.Show(exc.Message);
                 assyPartDS.RejectChanges();
-                //this.assyTableAdapter.Fill(this.assyPartDS.Assy);
-                //this.part_AssyTableAdapter.Fill(this.assyPartDS.Part_Assy);
             }
         }
 
@@ -232,6 +222,8 @@ namespace MRP
                 MessageBox.Show(exp.Message);
             }
         }
+
+        
 
 
        
