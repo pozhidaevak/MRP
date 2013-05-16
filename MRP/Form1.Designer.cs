@@ -101,8 +101,8 @@
             this.AssyPartView.Name = "AssyPartView";
             this.AssyPartView.Size = new System.Drawing.Size(393, 150);
             this.AssyPartView.TabIndex = 0;
-            this.AssyPartView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.AssyPartView_CellEndEdit);
-            this.AssyPartView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.AssyPartView_UserDeletedRow);
+            this.AssyPartView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.CellEndEdit);
+            this.AssyPartView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.UserDeletedRow);
             // 
             // продуктDataGridViewTextBoxColumn
             // 
@@ -174,8 +174,8 @@
             this.PartView.Name = "PartView";
             this.PartView.Size = new System.Drawing.Size(243, 150);
             this.PartView.TabIndex = 1;
-            this.PartView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.PartView_CellEndEdit);
-            this.PartView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.PartView_UserDeletedRow);
+            this.PartView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.CellEndEdit);
+            this.PartView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.UserDeletedRow);
             // 
             // nameDataGridViewTextBoxColumn
             // 
@@ -209,8 +209,8 @@
             this.ClientView.Name = "ClientView";
             this.ClientView.Size = new System.Drawing.Size(123, 150);
             this.ClientView.TabIndex = 2;
-            this.ClientView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.ClientView_CellEndEdit);
-            this.ClientView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.ClientView_UserDeletedRow);
+            this.ClientView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.CellEndEdit);
+            this.ClientView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.UserDeletedRow);
             // 
             // nameDataGridViewTextBoxColumn1
             // 
@@ -246,8 +246,8 @@
             this.OrderView.Name = "OrderView";
             this.OrderView.Size = new System.Drawing.Size(495, 150);
             this.OrderView.TabIndex = 3;
-            this.OrderView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.OrderView_CellEndEdit);
-            this.OrderView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.OrderView_UserDeletedRow);
+            this.OrderView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.CellEndEdit);
+            this.OrderView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.UserDeletedRow);
             // 
             // dateDataGridViewTextBoxColumn
             // 
