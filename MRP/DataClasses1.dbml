@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="MRP" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=AP;Initial Catalog=MRP;Integrated Security=True" SettingsObjectName="MRP.Properties.Settings" SettingsPropertyName="MRPConnectionString" Provider="System.Data.SqlClient" />
+  <Function Name="dbo.CalcMRP" Method="CalcMRP">
+    <Parameter Name="start_day" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="end_day" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="min_stock" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="pDays" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="max_Stock" Type="System.Int64" DbType="BigInt" />
+    <Return Type="System.Int32" />
+  </Function>
+</Database>
