@@ -38,23 +38,17 @@ namespace MRP
                 if (dgv[i, e.RowIndex].Value == null || dgv[i, e.RowIndex].Value.ToString().Length < 1)
                     return;
             }
-            try
-            {
-                ((BindingSource)dgv.DataSource).EndEdit();
-                assyPartDS.GetChanges();
-                TAM.UpdateAll(assyPartDS);
-                assyPartDS.AcceptChanges();
-            }
-            catch (Exception exc)
-            {
-                MessageBox.Show(exc.Message);
-                assyPartDS.RejectChanges();
-            }
+            SyncToDB(dgv);
         }
 
         private void UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
             DataGridView dgv = (DataGridView)sender;
+            SyncToDB(dgv);
+        }
+
+        private void SyncToDB(DataGridView dgv)
+        {
             try
             {
                 ((BindingSource)dgv.DataSource).EndEdit();
@@ -79,10 +73,11 @@ namespace MRP
                 int day = Convert.ToInt32(daysBox.Text);
                 int endDay = Convert.ToInt32(endDayBox.Text);
 
-                //TODO add testing of input data
+                //testing of input data
                 if (minStock < 0 || maxStock < 0 || endDay < 1 || day < 1 || maxStock <= minStock)
                     throw new Exception("Invalid data");
 
+                //Calc Purchase table and parse function return
                 DataClasses1DataContext dc = new DataClasses1DataContext();
                 switch (dc.CalcMRP(1, endDay, minStock, day, maxStock))
                 {
